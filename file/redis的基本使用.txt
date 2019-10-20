@@ -1,0 +1,41 @@
+
+Redis是客户端/服务器的模式
+
+1.先启动redis的服务
+  windows中的服务是  redis-server.exe
+  1)双击redis-server.exe，启动redis服务， 启动的服务默认的端口是 6379
+  2)如果双击不能启动服务， 启动cmd, 执行 redis-server.exe redis的配置文件路径
+
+2.再启动客户端 ，通过客户端访问redis服务
+  redis-cli.exe
+  双击 redis-cli.exe ，默认是连接到 127.0.0.1 服务器上的 6379的redis服务
+
+
+Linux的安装：
+1.上传redis.3.2.9.tar.gz到Linux  
+2.解压 ： tar -zxvf redis.3.2.9.tar.gz -C /usr/local
+3.安装 gcc 的c语言的编译器， yum -y install gcc
+4.在redis的文件目录下， 在src的上级目录
+  /usr/local/redis.3.2.9/ 这个位置执行 make
+注意： 可以在 4步骤执行，执行make install ， 这个命令是把 src/目录下的可执行文件放到 系统的path变量中
+   就可以在任意位置执行redis的命令， 例如执行 redis-server  , 执行redis-cli
+
+
+启动redis
+1.前台启动
+  1)在src目录下执行 ./redis-server
+  2)使用绝对路径，执行redis-server , /usr/local/redis-3.2.9/src/redis-server
+2.后台启动
+  ./redis-server &
+
+使用命令行客户端访问redis服务
+1）执行src目录下的  ./redis-cli ，这个程序默认是连接到 127.0.0.1 ， 6379端口的redis
+2）连接到其他的redis服务器 ./redis-cli -h ip -p 端口
+    ./redis-cli -h 127.0.0.1 -p 6379
+
+关闭redis
+1.使用shutdown命令，推荐使用的，
+  ./redis-cli shutdown
+2.kill 
+  1)ps -ef |grep redis 查出pid
+  2)kill pid , kill -9 pid
